@@ -1,0 +1,207 @@
+%%%% Custom macros
+%%%% Macros
+
+%% Greek letters
+
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\g}{\gamma}
+\newcommand{\de}{\delta}
+\newcommand{\e}{\epsilon}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ka}{\kappa}
+\newcommand{\la}{\lambda}
+\newcommand{\sig}{\sigma}
+\newcommand{\om}{\omega}
+\newcommand{\Om}{\Omega}
+\let\oldth\th %% \th is used for "thorn"
+\renewcommand{\th}{\theta}
+
+%% Tweak some Greek letters
+\newcommand{\bchi}{\mbox{\raisebox{.4ex}{\begin{large}$\chi$\end{large}}}}
+\newcommand{\Chi}{\mbox{\Large$\chi$}} % nicer looking Chi
+\newcommand{\bzeta}{\boldsymbol{\zeta}} % Riemann zeta function
+
+%% Blackboard
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\UU}{\mathbb{U}}
+\newcommand{\1}{\mathbbm{1}}
+
+%% Caligraphic
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+
+
+%% Roman, italic, boldface
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+\newcommand{\bE}{\mathbf{E}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bK}{\mathbf{K}}
+\newcommand{\bL}{\mathbf{L}}
+\newcommand{\bM}{\mathbf{M}}
+\newcommand{\bN}{\mathbf{N}}
+\newcommand{\bP}{\mathbf{P}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\bT}{\mathbf{T}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\bh}{\mathbf{h}}
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bz}{\mathbf{z}}
+\newcommand{\bq}{\mathbf{q}}
+
+
+%% Principal value integral
+\def\Xint#1{\mathchoice
+  {\XXint\displaystyle\textstyle{#1}}%
+  {\XXint\textstyle\scriptstyle{#1}}%
+  {\XXint\scriptstyle\scriptscriptstyle{#1}}%
+  {\XXint\scriptscriptstyle\scriptscriptstyle{#1}}%
+  \!\int}
+\def\XXint#1#2#3{{\setbox0=\hbox{$#1{#2#3}{\int}$}
+    \vcenter{\hbox{$#2#3$}}\kern-.5\wd0}}
+\def\ddashint{\Xint=}
+\def\pvint{\Xint-}
+
+%% Arc over symbols
+% reference: https://tex.stackexchange.com/questions/96680/a-better-notation-to-denote-arcs-for-an-american-high-school-textbook
+\makeatletter
+\DeclareFontFamily{U}{tipa}{}
+\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+\newcommand{\arc@arc}[2]{%
+  \sbox0{$\m@th#1#2$}%
+  \vbox{
+    \hbox{\resizebox{\wd0}{\height}{\arc@char}}
+    \nointerlineskip
+    \box0
+  }%
+}
+
+
+%% colored boxes
+\newsavebox{\astrutbox}
+\sbox{\astrutbox}{\rule[-5pt]{0pt}{20pt}}
+\newcommand{\astrut}{\usebox{\astrutbox}}
+\newcommand{\rls}{\raisebox{2pt}{\tikz{\draw[red,solid,line width=0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\rld}{\raisebox{2pt}{\tikz{\draw[red,dashed,line width=1.0pt](0,0) -- (5mm,0);}}}
+\newcommand{\bls}{\raisebox{2pt}{\tikz{\draw[blue,solid,line width=0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\bld}{\raisebox{2pt}{\tikz{\draw[blue,dashed,line width=1.0pt](0,0) -- (5mm,0);}}}
+\newcommand{\gls}{\raisebox{2pt}{\tikz{\draw[green,solid,line width=0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\gld}{\raisebox{2pt}{\tikz{\draw[green,dashed,line width=1.0pt](0,0) -- (5mm,0);}}}
+\newcommand{\mls}{\raisebox{2pt}{\tikz{\draw[magenta,solid,line width=0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\mld}{\raisebox{2pt}{\tikz{\draw[magenta,dashed,line width=1.0pt](0,0) -- (5mm,0);}}}
+\newcommand{\cls}{\raisebox{2pt}{\tikz{\draw[cyan,solid,line width=0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\cld}{\raisebox{2pt}{\tikz{\draw[cyan,dashed,line width=1.0pt](0,0) -- (5mm,0);}}}
+
+
+
+%% Delimiters, accents, bars, etc
+
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\Norm}[2]{\left\|#1\right\|_{#2}}
+\newcommand{\avg}[1]{\langle#1\rangle}
+\newcommand{\ds}{\displaystyle}
+
+
+%% Mathematical operators
+
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\erf}{erf}
+\DeclareMathOperator{\erfc}{erfc}
+\DeclareMathOperator{\ii}{i}
+\DeclareMathOperator{\dd}{\,d}
+\DeclareMathOperator{\eu}{e}
+\newcommand{\del}{\partial}
+\newcommand{\tri}{\triangle}
+\newcommand{\grad}{\nabla}
+\newcommand{\dvg}{\nabla\cdot}
+\newcommand{\curl}{\nabla\times}
+
+
+%% colored texts
+
+\newcommand{\red}[1]{{\color{red}{#1}}}
+\newcommand{\blue}[1]{{\color{blue}{#1}}}
+\newcommand{\green}[1]{{\color{green}{#1}}}
+
+
+%%
+
+\newcommand{\emptyframe}{\begin{frame}\end{frame}}
+\newcommand{\question}{\textbf{Question.}}
+\newcommand{\sqitem}{\item[$\square$]}
+
+
+%% 06/12/18 addition
+
+\newcommand{\vs}{\vspace{1em}}
+\newcommand{\tp}{^{\rm T}}
+
+
+%% Continued numbering over multiple enumerate environments
+% https://tex.stackexchange.com/questions/55000/continuing-enumerate-counters-in-beamer
+\newcounter{saveenumi}
+\newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
+\newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
+
+
+%% Extension to amsmath matrix environment
+% improving matrix constructors
+% source: http://texblog.net/latex-archive/maths/amsmath-matrix/
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+% In order to make the column lines to look nicer:
+\setlength\delimitershortfall{0pt}
